@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.getnews.Model.HeadlineModel;
+import com.example.getnews.ViewModel.ViewModelHelpers.HeadLinesRoomDBRespository;
+import com.example.getnews.ViewModel.ViewModelHelpers.HeadLinesWebServiceRepository;
 
 import java.util.List;
 
@@ -19,12 +21,17 @@ public class HeadLineViewModel extends AndroidViewModel {
 
 
     private LiveData<List<HeadlineModel>> allHeadline; //live data of headline
-    private HeadLineViewModelRepository headLineViewModelRepository;
+    private HeadLinesWebServiceRepository headLinesWebServiceRepository;
+    private HeadLinesRoomDBRespository headLinesRoomDBRespository;
+    private LiveData<List<HeadlineModel>> retroObservable;
 
 
     public HeadLineViewModel(@NonNull Application application) {
         super(application);
-        allHeadline = headLineViewModelRepository.getAllHeadlines();
+        headLinesWebServiceRepository = new HeadLinesWebServiceRepository(application);
+        headLinesRoomDBRespository = new HeadLinesRoomDBRespository(application);
+
+
 
     }
 
@@ -32,4 +39,6 @@ public class HeadLineViewModel extends AndroidViewModel {
     public LiveData<List<HeadlineModel>> getAllHeadline() {
         return allHeadline;
     }
+
+
 }

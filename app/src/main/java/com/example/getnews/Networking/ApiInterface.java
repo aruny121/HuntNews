@@ -9,6 +9,11 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+/**
+ * Desc - interface which contains fucntion in order to interact with param with Retrofit Api .
+ * author - Arun yadav
+ * email - aruny121@gmail.com
+ */
 
 public interface ApiInterface {
     @GET("/top-headlines")
