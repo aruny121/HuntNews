@@ -38,11 +38,8 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).getAuthor());
-        holder.mIdView.setText(mValues.get(position).getAuthor());
-        holder.description.setText(mValues.get(position).getDescription());
 
-            holder.language.setText(mValues.get(position).getDescription());
+        holder.language.setText(mValues.get(position).getTitle());
 
         Glide.with(mContext).load(mValues.get(position).getUrlToImage())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -62,7 +59,7 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView, description, language;
+        public final TextView  language;
         public final TextView mContentView;
         public final ImageView avatar;
 
@@ -71,10 +68,8 @@ public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapte
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
             avatar = (ImageView) view.findViewById(R.id.avatar);
-            description = (TextView) view.findViewById(R.id.description);
             language = (TextView) view.findViewById(R.id.language);
 
         }
