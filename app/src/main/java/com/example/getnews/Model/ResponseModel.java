@@ -22,8 +22,6 @@ public class ResponseModel implements Serializable {
         this.totalResults = totalResults;
     }
 
-
-
     @SerializedName("status")
     @Expose
     private String status;
