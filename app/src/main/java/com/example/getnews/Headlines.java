@@ -6,8 +6,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.getnews.Model.HeadlineModel;
+import com.example.getnews.Model.ArticleModel;
 import com.example.getnews.ViewModel.HeadLineViewModel;
 
 import java.util.List;
@@ -27,17 +28,19 @@ public class Headlines extends AppCompatActivity {
         getHeadlinesData();
     }
 
-
-    /*
+    /**
     function to get the api data i.e headline data
     @Param - NOT REQUIRED ANY
-     */
+     **/
     public void  getHeadlinesData(){
         viewModel = ViewModelProviders.of(this).get(HeadLineViewModel.class);
-        viewModel.getAllHeadline().observe(this, new Observer<List<HeadlineModel>>() {
+        viewModel.getAllHeadline().observe(this, new Observer<List<ArticleModel>>() {
             @Override
-            public void onChanged(@Nullable List<HeadlineModel> developerModels) {
-                System.out.print("****" + developerModels.toString());
+            public void onChanged(@Nullable List<ArticleModel> articleModelList) {
+                if(articleModelList != null)
+                {
+                    //connection for adapter
+                }
             }
         });
     }

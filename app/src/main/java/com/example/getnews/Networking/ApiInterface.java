@@ -1,9 +1,6 @@
 package com.example.getnews.Networking;
 
-import com.example.getnews.HelperClasses.Constants;
-import com.example.getnews.Model.HeadlineModel;
-
-import java.util.List;
+import com.example.getnews.Model.ResponseModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,10 +12,14 @@ import retrofit2.http.Query;
  * email - aruny121@gmail.com
  */
 
+
 public interface ApiInterface {
-    @GET("/top-headlines")
-    Call<List<HeadlineModel>> getHeadlinesApi(
+    public static  final String API_BASE_URL = "https://newsapi.org/";
+
+    @GET("v2/top-headlines")
+    Call<ResponseModel> getHeadlinesApi(
             @Query("country") String country,
             @Query("category") String category,
             @Query("apiKey") String apiKey);
 }
+

@@ -10,9 +10,9 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.getnews.HelperClasses.Constants;
-import com.example.getnews.Model.HeadlineModel;
+import com.example.getnews.Model.ArticleModel;
 
-@Database(entities = {HeadlineModel.class}, version = 1, exportSchema = false)
+@Database(entities = {ArticleModel.class}, version = 1, exportSchema = false)
 public abstract class HeadlinesDB extends RoomDatabase {
     private static final String DB_NAME = Constants.DATABASE_NAME;
     private static HeadlinesDB instance;
@@ -38,6 +38,7 @@ public abstract class HeadlinesDB extends RoomDatabase {
     };
 
     public abstract DaoRepositiory repositoryAllDao();
+
 
 
     private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {

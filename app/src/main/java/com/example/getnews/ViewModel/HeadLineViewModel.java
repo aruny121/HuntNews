@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.getnews.Model.HeadlineModel;
+import com.example.getnews.Model.ArticleModel;
 import com.example.getnews.ViewModel.ViewModelHelpers.HeadLinesRoomDBRespository;
 import com.example.getnews.ViewModel.ViewModelHelpers.HeadLinesWebServiceRepository;
 
@@ -20,25 +20,23 @@ import java.util.List;
 public class HeadLineViewModel extends AndroidViewModel {
 
 
-    private LiveData<List<HeadlineModel>> allHeadline; //live data of headline
+    private LiveData<List<ArticleModel>> allHeadline; //live data of headline
     private HeadLinesWebServiceRepository headLinesWebServiceRepository;
     private HeadLinesRoomDBRespository headLinesRoomDBRespository;
-    private LiveData<List<HeadlineModel>> retroObservable;
+    private LiveData<List<ArticleModel>> retroObservable;
 
 
     public HeadLineViewModel(@NonNull Application application) {
         super(application);
         headLinesWebServiceRepository = new HeadLinesWebServiceRepository(application);
         headLinesRoomDBRespository = new HeadLinesRoomDBRespository(application);
-
-
+        retroObservable = headLinesWebServiceRepository.providesWebService();
+        allHeadline = headLinesRoomDBRespository.getAllArticle();
 
     }
 
-    //function return the live data of headlines
-    public LiveData<List<HeadlineModel>> getAllHeadline() {
+    // function return the live data of headlines
+    public LiveData<List<ArticleModel>> getAllHeadline() {
         return allHeadline;
     }
-
-
 }

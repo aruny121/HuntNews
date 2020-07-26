@@ -1,12 +1,14 @@
 package com.example.getnews.Model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.getnews.HelperClasses.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * Desc - class is for headlines  model getter and setter
@@ -14,18 +16,13 @@ import java.util.List;
  * email - aruny121@gmail.com
  */
 
-@Entity(tableName = Constants.DATABASE_HEADLINES_TABLE_NAME)
-public class HeadlineModel  {
-    public int getParentid() {
-        return parentid;
+public class ResponseModel implements Serializable {
+    public ResponseModel(String status, Integer totalResults) {
+        this.status = status;
+        this.totalResults = totalResults;
     }
 
-    public void setParentid(int parentid) {
-        this.parentid = parentid;
-    }
 
-    @PrimaryKey(autoGenerate = true)
-    private int parentid;
 
     @SerializedName("status")
     @Expose
@@ -34,7 +31,7 @@ public class HeadlineModel  {
     @Expose
     private Integer totalResults;
     @SerializedName("articles")
-    @Expose
+    @Expose @Ignore
     private List<ArticleModel> articles = null;
 
     public String getStatus() {

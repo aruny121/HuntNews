@@ -7,7 +7,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.getnews.Model.HeadlineModel;
+import com.example.getnews.Model.ArticleModel;
 
 import java.util.List;
 /**
@@ -25,11 +25,12 @@ public interface DaoRepositiory {
      * @return desc - Dao for repository list and build by list
      */
     @Insert
-    long[] insertRepositoryAll(List<HeadlineModel> headlineModels);
+    long[] insertArticle(List<ArticleModel> headlineModels);
 
-
+    @Query("DELETE FROM News_Headlines_table")
+    void deleteAllRepository();
 
     @Query("SELECT * FROM News_Headlines_table ORDER BY parentid DESC")
-    LiveData<List<HeadlineModel>> getHeadlinesAll();
+    LiveData<List<ArticleModel>> getHeadlinesAll();
 
 }

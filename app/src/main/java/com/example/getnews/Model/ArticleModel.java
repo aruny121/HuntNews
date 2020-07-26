@@ -1,19 +1,34 @@
 package com.example.getnews.Model;
 
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.example.getnews.HelperClasses.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 
 /**
  * Desc - class is for article model getter and setter
  * author - Arun yadav
  * email - aruny121@gmail.com
  */
-public class ArticleModel {
 
-    @SerializedName("source")
-    @Expose
-    private SourceModel source;
+@Entity(tableName = Constants.DATABASE_HEADLINES_TABLE_NAME)
+public class ArticleModel implements Serializable {
+    public int getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int parentid;
     @SerializedName("author")
     @Expose
     private String author;
@@ -35,15 +50,6 @@ public class ArticleModel {
     @SerializedName("content")
     @Expose
     private String content;
-
-    public SourceModel getSource() {
-        return source;
-    }
-
-    public void setSource(SourceModel source) {
-        this.source = source;
-    }
-
     public String getAuthor() {
         return author;
     }
