@@ -1,8 +1,7 @@
-package com.example.getnews.Adapters;
+package com.example.getnews.UI.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.getnews.HeadlinesDetail;
+import com.example.getnews.UI.Activity.HeadlinesDetail;
 import com.example.getnews.HelperClasses.Constants;
 import com.example.getnews.HelperClasses.Util;
 import com.example.getnews.Model.ArticleModel;
 import com.example.getnews.R;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 public class HeadlineNewsAdapter extends RecyclerView.Adapter<HeadlineNewsAdapter.ViewHolder> {

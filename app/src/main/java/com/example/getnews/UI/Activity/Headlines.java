@@ -1,4 +1,4 @@
-package com.example.getnews;
+package com.example.getnews.UI.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +7,20 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.getnews.Adapters.HeadlineNewsAdapter;
+import com.example.getnews.HelperClasses.MyReceiver;
+import com.example.getnews.R;
+import com.example.getnews.UI.Adapter.HeadlineNewsAdapter;
 import com.example.getnews.Model.ArticleModel;
 import com.example.getnews.ViewModel.HeadLineViewModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Desc - Main activity class for Headlines list
@@ -25,12 +30,16 @@ import java.util.List;
 public class Headlines extends AppCompatActivity {
     private HeadLineViewModel viewModel;
     private RecyclerView recyclerView;
+    private BroadcastReceiver MyReceiver = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.list);
+        MyReceiver = new MyReceiver();
+
         getHeadlinesData();
     }
 
@@ -47,10 +56,23 @@ public class Headlines extends AppCompatActivity {
                 if(articleModel != null)
                 {
                     recyclerView.setAdapter(new HeadlineNewsAdapter(getApplication(), articleModel));
-
-                    //connection for adapter
                 }
             }
         });
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(MyReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(MyReceiver);
+
     }
 }

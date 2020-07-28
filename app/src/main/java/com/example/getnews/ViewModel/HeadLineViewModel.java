@@ -12,6 +12,8 @@ import com.example.getnews.ViewModel.ViewModelHelpers.HeadLinesWebServiceReposit
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Desc - View model class for headlines screen
  * author - Arun yadav
@@ -25,7 +27,7 @@ public class HeadLineViewModel extends AndroidViewModel {
     private HeadLinesRoomDBRespository headLinesRoomDBRespository;
     private LiveData<List<ArticleModel>> retroObservable;
 
-
+@Inject
     public HeadLineViewModel(@NonNull Application application) {
         super(application);
         headLinesWebServiceRepository = new HeadLinesWebServiceRepository(application);

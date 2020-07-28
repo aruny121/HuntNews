@@ -1,10 +1,11 @@
-package com.example.getnews;
+package com.example.getnews.UI.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,10 +15,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.getnews.HelperClasses.Constants;
 import com.example.getnews.HelperClasses.Util;
 import com.example.getnews.Model.ArticleModel;
+import com.example.getnews.R;
 
 public class HeadlinesDetail extends  Util {
     private ArticleModel articleModel;
-    private ImageView imageView;
+    private ImageView imageView, backpress;
     private TextView headline, author, date, description;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,6 @@ public class HeadlinesDetail extends  Util {
                 return;
             }
         Log.d("Repository", "Response::::" + articleModel.getDescription());
-
             setValueUI(articleModel);
     }
 
@@ -44,8 +45,14 @@ public class HeadlinesDetail extends  Util {
         author = findViewById(R.id.author);
         date = findViewById(R.id.date);
         description = findViewById(R.id.description);
-
-    }
+        backpress = findViewById(R.id.backpress);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+finish();
+            }
+        });    }
 
     public  void setValueUI(ArticleModel articleModel){
         headline.setText(NullcheckforResponse(articleModel.getTitle()));
