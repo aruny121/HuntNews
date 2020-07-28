@@ -1,0 +1,109 @@
+package com.example.getnews.Model;
+
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import com.example.getnews.HelperClasses.Constants;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+/**
+ * Desc - class is for article model getter and setter
+ * author - Arun yadav
+ * email - aruny121@gmail.com
+ */
+
+@Entity(tableName = Constants.DATABASE_HEADLINES_TABLE_NAME)
+public class ArticleModel implements Serializable {
+    public int getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int parentid;
+    @SerializedName("author")
+    @Expose
+    private String author;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("url")
+    @Expose
+    private String url;
+    @SerializedName("urlToImage")
+    @Expose
+    private String urlToImage;
+    @SerializedName("publishedAt")
+    @Expose
+    private String publishedAt;
+    @SerializedName("content")
+    @Expose
+    private String content;
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
+    }
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+}
